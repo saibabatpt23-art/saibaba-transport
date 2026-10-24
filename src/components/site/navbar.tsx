@@ -17,6 +17,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -38,8 +44,6 @@ export function Navbar() {
     setPrevPathname(pathname);
     setOpen(false);
   }
-
-
 
   return (
     <header
@@ -113,18 +117,6 @@ export function Navbar() {
 
         <div className="hidden items-center gap-1.5 xl:flex">
           <Button
-            variant="ghost"
-            size="icon-sm"
-            asChild
-            title="Customer Login"
-            aria-label="Customer Login"
-            className={cn(!scrolled && "text-white hover:bg-white/10 hover:text-white")}
-          >
-            <a href={siteConfig.crmUrl} target="_blank" rel="noopener noreferrer">
-              <LogIn className="size-4" />
-            </a>
-          </Button>
-          <Button
             variant="outline"
             size="sm"
             asChild
@@ -135,6 +127,34 @@ export function Navbar() {
               Track Shipment
             </Link>
           </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                title="Login"
+                aria-label="Login"
+                className={cn(!scrolled && "border-white/30 bg-white/5 text-white hover:bg-white/10 hover:text-white")}
+              >
+                <LogIn className="size-4" /> Login
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem asChild>
+                <a href={siteConfig.crmUrl} target="_blank" rel="noopener noreferrer" className="flex w-full cursor-pointer items-center gap-2">
+                  <LogIn className="size-4" />
+                  Customer Login
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a href={siteConfig.erpUrl} target="_blank" rel="noopener noreferrer" className="flex w-full cursor-pointer items-center gap-2">
+                  <LogIn className="size-4" />
+                  ERP Login
+                </a>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <Button
             variant="outline"
             size="sm"
@@ -210,6 +230,11 @@ export function Navbar() {
                 <Button variant="outline" asChild>
                   <a href={siteConfig.crmUrl} target="_blank" rel="noopener noreferrer">
                     <LogIn className="size-4" /> Customer Login
+                  </a>
+                </Button>
+                <Button variant="outline" asChild>
+                  <a href={siteConfig.erpUrl} target="_blank" rel="noopener noreferrer">
+                    <LogIn className="size-4" /> ERP Login
                   </a>
                 </Button>
                 <Button asChild>
