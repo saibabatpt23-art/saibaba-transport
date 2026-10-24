@@ -39,6 +39,8 @@ export function Navbar() {
     setOpen(false);
   }
 
+
+
   return (
     <header
       className={cn(
